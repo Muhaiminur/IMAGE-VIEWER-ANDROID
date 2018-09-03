@@ -35,6 +35,16 @@
                 android:scaleType="fitXY"
                 android:padding="5dp"/>
 
+            <Button
+                android:id="@+id/full_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/colorPrimary"
+                android:text="Details"
+                android:textColor="@android:color/white" />
+
 
         </RelativeLayout>
 
