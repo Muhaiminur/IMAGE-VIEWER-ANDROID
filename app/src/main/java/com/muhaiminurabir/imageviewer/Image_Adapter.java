@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -80,27 +81,37 @@ public class Image_Adapter extends RecyclerView.Adapter<Image_Adapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         int img = image_list.get(position);
 
-        Bitmap b=drawableToBitmap(context.getResources().getDrawable(image_list.get(position)));
+        /*Bitmap b=drawableToBitmap(context.getResources().getDrawable(image_list.get(position)));
         Bitmap bin=resizeImageForImageView(b);
         Drawable d = new BitmapDrawable(context.getResources(), bin);
 
         final ImagePopup imagePopup = new ImagePopup((Activity)context);
         //imagePopup.initiatePopup(context.getResources().getDrawable(image_list.get(position)));
-        imagePopup.initiatePopup(d);
+        imagePopup.initiatePopup(d);*/
         /*imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
         imagePopup.setBackgroundColor(Color.BLACK);  // Optional
         imagePopup.setFullScreen(true); // Optional
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional*/
-        Glide.with(context)
+        /*Glide.with(context)
                 .load(image_list.get(position))
                 .thumbnail( 0.1f )
+                .into(holder.mb);*/
+
+        /*Glide.with(context).load(image_list.get(position))
+                .thumbnail(0.5f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.mb);*/
+        GlideApp.with(context)
+                .load(image_list.get(position))
+                .placeholder(R.mipmap.ic_launcher)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.mb);
         holder.mb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imagePopup.viewPopup();
+                //imagePopup.viewPopup();
             }
         });
         holder.fullscreen.setOnClickListener(new View.OnClickListener() {
